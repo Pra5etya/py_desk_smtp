@@ -1,0 +1,7 @@
+For Testing use: 
+1. mailtrap.io
+
+library for SMTP: 
+1. smtplib 
+2. Django
+3. Flask-Mail
