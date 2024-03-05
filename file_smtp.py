@@ -51,19 +51,19 @@ def send_verification_email(email):
     verification_code = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
 
     # Send email with verification code
-    smtp_server = 'sandbox.smtp.mailtrap.io'
-    smtp_port = 2525  # Change according to your SMTP server
+    smtp_server = 'sandbox.smtp.mailtrap.io' # SMTP Server URL
+    smtp_port = 2525  # SMTP server Port
     
-    server_username = '8b78a03d0e70b9'  # Change to your email
-    server_login = '51d9feccfb8f48'  # Change to your password
+    server_username = '8b78a03d0e70b9'  # SMTP Server Username
+    server_login = '51d9feccfb8f48'  # SMTP Server Password
 
     private_email = 'sample@main2.com' # change to your email
 
+    # Email configuration
     msg = MIMEMultipart()
     msg['From'] = private_email
-    msg['To'] = email
+    msg['To'] = email # email from db
     msg['Subject'] = 'Verification Code for Password Reset'
-
     body = f'Your verification code is: {verification_code}'
     msg.attach(MIMEText(body, 'plain'))
 
@@ -75,6 +75,7 @@ def send_verification_email(email):
         server.quit()
         messagebox.showinfo("Success", "Verification code sent to your email!")
         return verification_code
+    
     except smtplib.SMTPException as e:
         messagebox.showerror("Error", f"Failed to send email: {str(e)}")
         return None
